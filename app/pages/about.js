@@ -10,7 +10,7 @@ const About = () => {
               <p>Experiment & connect.</p>
               <p>This platform is for lovers of movement & dance to find classes that are freshly created, the ones you can't so easily find on Google … or maybe you can. A decadent mix. 🎶🌟</p>
               <p>In future versions, there will be an Instructor Page and a Student Page where you can get a feel for the artists more, and where students can connect and collab with each other.</p>
-              <p>Sweet moves now, and more ahead. 🌈✨</p>
+              <p>Sweet moves now, and more ahead! 🌈✨</p>
           </div>
       </div>
   );
