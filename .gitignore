@@ -1,0 +1,49 @@
+# Ignore Node.js and npm related files and folders
+/app/.next/
+/app/node_modules/
+
+# Ignore Python virtual environment
+/venv/
+
+# Ignore local development settings
+.env
+
+# Ignore compiled Python files
+*.pyc
+/__pycache__/
+__pycache__/
+
+# Ignore VSCode settings
+.vscode/
+
+# Ignore system files
+.DS_Store
+Thumbs.db
+
+# Ignore log files
+/log/
+
+# Ignore local configurations
+/local_settings.py
+
+# Ignore environment files
+.env*
+
+# Ignore compiled JavaScript files
+/static/js/
+
+# Ignore compiled stylesheets
+/static/css/
+
+# Ignore dependencies
+/app/yarn.lock
+/app/package-lock.json
+
+#Ignore migrations
+/dropn/migrations/
+
+#ignore .next
+/.next/
+
+#large files .node
+app/node_modules/@next/**/*.node
