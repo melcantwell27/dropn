@@ -1,9 +1,10 @@
-import { getCsrfToken } from './csrf';
-
 // Define the base URL of your Django API
 const BASE_URL = 'http://localhost:8000';
 
 export async function fetchClassList() {
+  // const endpoint = '/classes'
+  // const url = BASE_URL + endpoint
+  console.log("Fetching all classes")
   try {
     const response = await fetch(`${BASE_URL}/classes/`, {
       credentials: 'include', // Include cookies for authentication
@@ -18,20 +19,21 @@ export async function fetchClassList() {
 
 // Function to fetch classes for the currently authenticated user from the API
 export async function fetchStudentClasses() {
-  try {
-    // Make a GET request to the endpoint for fetching classes for the logged-in user
-    const response = await fetch(`${BASE_URL}/my/classes/`, {
-      credentials: 'include', // Include cookies for authentication
-    });
-    // Parse the response as JSON
-    const data = await response.json();
-    // Return the fetched student classes
-    return data;
-  } catch (error) {
-    // Log and throw an error if fetching student classes fails
-    console.error('Error fetching student classes:', error);
-    throw error;
-  }
+  return []
+  // try {
+  //   // Make a GET request to the endpoint for fetching classes for the logged-in user
+  //   const response = await fetch(`${BASE_URL}/my/classes/`, {
+  //     credentials: 'include', // Include cookies for authentication
+  //   });
+  //   // Parse the response as JSON
+  //   const data = await response.json();
+  //   // Return the fetched student classes
+  //   return data;
+  // } catch (error) {
+  //   // Log and throw an error if fetching student classes fails
+  //   console.error('Error fetching student classes:', error);
+  //   throw error;
+  // }
 }
 
 
@@ -162,17 +164,11 @@ function getCookie(name) {
 //   }
 // }
 
-const csrfToken = getCsrfToken(); 
-
 export async function logoutUser() {
   try {
     // const csrftoken = getCookie('csrftoken'); // Implement getCookie function to retrieve the CSRF token
     const response = await fetch(`http://localhost:8000/logout/`, {
       method: 'POST',
-      headers: {
-        'Content-Type': 'application/json',
-        'X-CSRFToken': csrfToken, // Include CSRF token in the headers
-      },
       credentials: 'include',
     });
     return response.ok;
