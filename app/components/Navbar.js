@@ -1,21 +1,17 @@
 // compnents/Navbar.js
 import Link from 'next/link';
-import { logoutUser } from '../slices/authSlice';
+import { useSelector, useDispatch } from 'react-redux'; // Import useSelector and useDispatch hooks
+import { logoutUser } from '../redux/slices/authSlice'
 
-const Navbar = ({ isLoggedIn }) => {
+
+const Navbar = () => {
+  const dispatch = useDispatch(); // Initialize useDispatch hook
+  const isLoggedIn = useSelector(state => state.auth.value.isAuth); // Updated to access isAuth from auth.value
+  const username = useSelector(state => state.auth.value.username); // Updated to access username from auth.value
+
   const handleLogout = async () => {
-    dispatch
-    // try {
-    //   const success = await logoutUser();
-    //   if (success) {
-    //     // Perform any additional logout actions if needed
-    //     console.log('Logout successful');
-    //   } else {
-    //     console.error('Logout failed');
-    //   }
-    // } catch (error) {
-    //   console.error('Error logging out:', error);
-    // }
+    dispatch(logoutUser());
+    // Handle logout logic if needed
   };
 
   return (
@@ -51,7 +47,10 @@ const Navbar = ({ isLoggedIn }) => {
           <div className="hidden md:block">
             <div className="ml-4 flex items-center md:ml-6">
               {isLoggedIn ? (
-                <button onClick={handleLogout} className="text-black hover:bg-gray-700 hover:text-white px-3 py-2 rounded-md text-xl font-medium transition-colors duration-300">Logout</button>
+                <>
+                  <span className="mr-4 text-black">{`Welcome, ${username}`}</span> {/* Display welcome message with username */}
+                  <button onClick={handleLogout} className="text-black hover:bg-gray-700 hover:text-white px-3 py-2 rounded-md text-xl font-medium transition-colors duration-300">Logout</button>
+                </>
               ) : (
                 <>
                   <Link href="/login">
@@ -68,6 +67,6 @@ const Navbar = ({ isLoggedIn }) => {
       </div>
     </nav>
   );
-}
+};
 
 export default Navbar;
