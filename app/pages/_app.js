@@ -2,7 +2,7 @@
 
 import { useEffect } from 'react';
 import { Provider } from 'react-redux';
-import store from '../store/store'; // Import your Redux store
+import { store } from '../redux/store'; // Import your Redux store from '../redux/store'; // Import your Redux store
 import 'tailwindcss/tailwind.css';
 import Navbar from '../components/Navbar';
 import Footer from '../components/Footer';
