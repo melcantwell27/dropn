@@ -3,7 +3,7 @@
 import { useState } from 'react';
 import { useDispatch } from 'react-redux';
 import { useRouter } from 'next/router'; // Import useRouter from next/router
-import { loginUser } from '../slices/authSlice'; // Import loginUser action creator from your authSlice
+import { logInUser } from '../redux/slices/authSlice'; // Import loginUser action creator from your authSlice
 
 const Login = () => {
   const dispatch = useDispatch();
@@ -14,23 +14,28 @@ const Login = () => {
     password: '',
   });
 
-  const handleChange = (e) => {
-    const { name, value } = e.target;
+  const handleUsernameChange = (e) => {
     setFormData((prevFormData) => ({
       ...prevFormData,
-      [name]: value,
+      username: e.target.value,
+    }));
+  };
+
+  const handlePasswordChange = (e) => {
+    setFormData((prevFormData) => ({
+      ...prevFormData,
+      password: e.target.value,
     }));
   };
 
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-      // Dispatch the loginUser action with the form data
-      await dispatch(loginUser(formData));
-      router.push('/'); // Redirect to root after successful login
+      await dispatch(logInUser(formData.username));
+      router.push('/');
     } catch (error) {
       console.error('Login failed:', error);
-      // Handle login error (e.g., display error message)
+      // Handle login error
     }
   };
 
@@ -40,24 +45,23 @@ const Login = () => {
       <form onSubmit={handleSubmit} className="space-y-4">
         <input
           type="text"
-          name="username"
           value={formData.username}
-          onChange={handleChange}
+          onChange={handleUsernameChange}
           placeholder="Username"
           className="w-full px-4 py-2 border rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
           required
         />
         <input
-          type="password"
-          name="password"
+          type="password" 
           value={formData.password}
-          onChange={handleChange}
+          onChange={handlePasswordChange}
           placeholder="Password"
           className="w-full px-4 py-2 border rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
           required
         />
         <button
           type="submit"
+          onClick={handleSubmit} // Add onClick event handler to the submit button
           className="w-full bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
         >
           Login
