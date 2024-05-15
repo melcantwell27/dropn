@@ -6,8 +6,8 @@ import { logoutUser } from '../redux/slices/authSlice'
 
 const Navbar = () => {
   const dispatch = useDispatch(); // Initialize useDispatch hook
-  const isLoggedIn = useSelector(state => state.auth.value.isAuth); // Updated to access isAuth from auth.value
-  const username = useSelector(state => state.auth.value.username); // Updated to access username from auth.value
+  const isLoggedIn = useSelector(state => state.auth.isAuth) // Updated to access isAuth from auth.value
+  const username = useSelector(state => state.auth.username); // Updated to access username from auth.value
 
   const handleLogout = async () => {
     dispatch(logoutUser());

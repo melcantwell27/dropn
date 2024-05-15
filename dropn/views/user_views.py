@@ -10,6 +10,13 @@ from rest_framework import status
 from ..serializers import UserRegistrationSerializer
 from rest_framework.parsers import JSONParser
 from django.views.decorators.csrf import csrf_exempt
+from rest_framework_simplejwt.views import TokenObtainPairView
+
+class CustomTokenObtainPairView(TokenObtainPairView):
+    def post(self, request, *args, **kwargs):
+        response = super().post(request, *args, **kwargs)
+        # Add custom logic here if needed
+        return response
 
 @api_view(['POST'])
 def register(request):

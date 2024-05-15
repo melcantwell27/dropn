@@ -31,7 +31,7 @@ const Login = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-      await dispatch(logInUser(formData.username));
+      await dispatch(logInUser(formData));
       router.push('/');
     } catch (error) {
       console.error('Login failed:', error);
